@@ -4,7 +4,7 @@ const connectDB = require('../db/connectDB');
 connectDB()
 const adminSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  password: { type: String},
   // other admin-related fields
 });
 adminSchema.plugin(plm)
