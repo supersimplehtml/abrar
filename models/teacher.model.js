@@ -15,6 +15,7 @@ const teacherSchema = new mongoose.Schema({
   section: { type: String, required: true },
   password: { type: String, required: true },
   username: { type: String, required: true },
+  role:{type:String,default:"teacher"}
 });
 
 const teacher = mongoose.model('teacher', teacherSchema);

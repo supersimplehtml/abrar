@@ -15,6 +15,7 @@ const studentSchema = new mongoose.Schema({
   rollNo: { type: Number, required: true },
   password: { type: String, required: true },
   username: { type: String, required: true },
+  role:{type:String,default:"student"}
 });
 
 const Student = mongoose.model('Student', studentSchema);
