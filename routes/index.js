@@ -263,7 +263,7 @@ router.post('/admin/addStudent', async (req, res) => {
           teachercnic:req.body.tcnic,
           isAdmin:req.body.isAdmin, });
          newstudent.save();
-         teacher.students.push(newstudent)
+         teacher.students.push(newstudent._id)
          await teacher.save();
          console.log(teacher)
       
@@ -303,12 +303,21 @@ router.post('/admin/removeStudent/:id', async (req, res) => {
       return res.status(404).json({ message: 'Student not found' });
     }
 
+    const teacherstudent = await Student.findById(studentId);  // Find the student after deletion
+
+    // Assuming there's a 'teachercnic' field in the 'removedStudent' document
+    await Teacher.findOneAndUpdate(
+      { cnic: removedStudent.teachercnic },
+      { $pull: { "students": { _id: teacherstudent._id } } }
+    );
+
     return res.json({ message: 'Student removed successfully', removedStudent });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 function isAuthenticated(req, res, next) {
   
