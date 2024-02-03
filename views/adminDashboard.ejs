@@ -1,0 +1,366 @@
+<!-- admin.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+     
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #555;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            
+        }
+
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        form {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #e44d26;
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .adiv {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1vw;
+            margin-bottom: -30px;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap:0vw;
+            width: fit-content;
+        }
+        .cont{
+            display: flex;
+            gap: 3vw;
+        }
+        .regs{
+            display: flex;
+            gap: 1vw;
+            width: 100%;
+            /* align-items: center; */
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Admin Panel</h1>
+
+    <h2>Teachers</h2>
+    <ul>
+        <% teacher.forEach(teacher => { %>
+            <li>
+                <!-- ... Teacher Info ... -->
+                <div class="cont">
+                    <div class="info">
+                        <div class="adiv">
+                            <h4>First Name:</h4>
+                            <%= teacher.firstName %>
+                        </div>
+                        <div class="adiv">
+                            <h4>Last Name:</h4>
+                            <span><%= teacher.lastName %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>Age:</h4>
+                            <span><%= teacher.age %></span>
+                        </div>
+                    
+                        <div class="adiv">
+                            <h4>Address:</h4>
+                            <span><%= teacher.address %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>City:</h4>
+                            <span><%= teacher.city %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>CNIC:</h4>
+                            <span><%= teacher.cnic %></span>
+                        </div>
+                    
+                    
+                    </div>
+                    <div class="info">
+                    
+                        <div class="adiv">
+                            <h4>Gender:</h4>
+                            <span><%= teacher.gender %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>Email:</h4>
+                            <span><%= teacher.email %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>Subject:</h4>
+                            <span><%= teacher.subject %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>Section:</h4>
+                            <span><%= teacher.section %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>Username:</h4>
+                            <span><%= teacher.username %></span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="removeTeacher('<%= teacher._id %>')">Remove</button>
+            </li>
+        <% }) %>
+    </ul>
+
+    
+    <h2>Students</h2>
+    <ul>
+        <% student.forEach(student => { %>
+            <li>
+                <!-- ... student Info ... -->
+                <div class="cont">
+                    <div class="info">
+                        <div class="adiv">
+                            <h4>First Name:</h4>
+                            <%= student.firstName %>
+                        </div>
+                        <div class="adiv">
+                            <h4>Last Name:</h4>
+                            <span><%= student.lastName %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>Age:</h4>
+                            <span><%= student.age %></span>
+                        </div>
+                    
+                        <div class="adiv">
+                            <h4>Address:</h4>
+                            <span><%= student.address %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>City:</h4>
+                            <span><%= student.city %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>CNIC:</h4>
+                            <span><%= student.cnic %></span>
+                        </div>
+                    
+                    
+                    </div>
+                    <div class="info">
+                    
+                        <div class="adiv">
+                            <h4>Gender:</h4>
+                            <span><%= student.gender %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>Email:</h4>
+                            <span><%= student.email %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>Subject:</h4>
+                            <span><%= student.subject %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>Section:</h4>
+                            <span><%= student.section %></span>
+                        </div>
+                        <div class="adiv">
+                            <h4>Username:</h4>
+                            <span><%= student.username %></span>
+                        </div>
+                        
+                    </div>
+                </div>
+                <button onclick="removeStudent('<%= student._id %>')">Remove</button>
+            </li>
+        <% }) %>
+    </ul>
+<div class="regs">
+    
+        <form action="/admin/addUser" method="post">
+            <h2>Add Teacher</h2>
+            <label for="fname">First Name:</label>
+            <input type="text" id="fname" name="fname" required>
+    
+            <label for="lname">Last Name:</label>
+            <input type="text" id="lname" name="lname" required>
+    
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+    
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+    
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+    
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+    
+            <label for="cnic">CNIC:</label>
+            <input type="text" id="cnic" name="cnic" required>
+    
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+    
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+    
+            <!-- <label for="avatar">Avatar:</label>
+            <input type="file" id="avatar" name="avatar" accept="image/*" required> -->
+    
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+    
+            <label for="section">Section:</label>
+            <input type="text" id="section" name="section" required>
+    
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+    
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+    
+    
+    
+    
+            <input type="submit" value="Add Teacher">    </form>
+            <form action="/admin/addStudent" method="post">
+                <h2>Add Student</h2>
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" name="fname" required>
+            
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lname" name="lname" required>
+            
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+            
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+            
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+            
+                <label for="cnic">CNIC:</label>
+                <input type="number" id="cnic" name="cnic" required>
+                <label for="cnic">Teacher CNIC:</label>
+                <input type="number" id="tcnic" name="tcnic" required>
+            
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            
+                <!-- <label for="avatar">Avatar:</label>
+                <input type="file" id="avatar" name="avatar" accept="image/*" required> -->
+            
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+            
+                <label for="section">Section:</label>
+                <input type="text" id="section" name="section" required>
+                <label for="class">Class:</label>
+                <input type="text" id="class" name="class" required>
+                <label for="roll">Roll#:</label>
+                <input type="text" id="roll" name="roll" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            
+            
+            
+            
+                <input type="submit" value="Add Student">    </form>
+</div>
+
+    <script src="/javascripts/admin.js"></script>
+
+</body>
+</html>
+
+

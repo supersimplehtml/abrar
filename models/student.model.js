@@ -9,13 +9,14 @@ const studentSchema = new mongoose.Schema({
   city:{type:String,required:true},
   cnic:{type:String,required:true},
   gender:{type:String,required:true},
-  avatar: { type: String, required: true },
+  // avatar: { type: String, required: true },
   class: { type: String, required: true },
   section: { type: String, required: true },
   rollNo: { type: Number, required: true },
   password: { type: String, required: true },
   username: { type: String, required: true },
-  role:{type:String,default:"student"}
+  role:{type:String,default:"student"},
+  teachercnic:{type:Number,required:true},
 });
 
 const Student = mongoose.model('Student', studentSchema);
