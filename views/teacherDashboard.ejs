@@ -1,11 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Dashboard - Quran Teaching School</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+section {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Hadi</h1>
+  <header>
+    <h1>Teacher Dashboard</h1>
+    <nav>
+      <ul>
+        <li><a href="#students">Students</a></li>
+        <li><a href="#lessons">Lessons</a></li>
+        <li><a href="#progress">Progress Tracking</a></li>
+        <li><a href="#logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <section id="students">
+    <h2>Students</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Level</th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+        <td>Student 1</td>
+        <td>Intermediate</td>
+        <td><button>Edit</button><button>Delete</button></td>
+      </tr>
+      <tr>
+        <td>Student 2</td>
+        <td>Beginner</td>
+        <td><button>Edit</button><button>Delete</button></td>
+      </tr>
+    </table>
+  </section>
+  
+  <section id="lessons">
+    <h2>Lessons</h2>
+    <ul>
+      <li>Lesson 1 - Quran Reading</li>
+      <li>Lesson 2 - Tajweed</li>
+      <li>Lesson 3 - Memorization</li>
+    </ul>
+    <button>Add Lesson</button>
+  </section>
+  
+  <section id="progress">
+    <h2>Progress Tracking</h2>
+    <p>Track students' progress in their Quran learning journey.</p>
+  </section>
+  
+  <footer>
+    <p>&copy; 2024 Quran Teaching School. All rights reserved.</p>
+  </footer>
 </body>
 </html>

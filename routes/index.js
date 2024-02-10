@@ -67,11 +67,7 @@ passport.use('teacher', new LocalStrategy(
   }
 ));
 
-// ... (existing code)
-// routes/index.js
-// ... (existing code)
 
-// Handle teacher login form submission using Passport
 router.post('/teacher/login',
   passport.authenticate('teacher', {
     successRedirect: '/teacher/dashboard',
@@ -79,28 +75,18 @@ router.post('/teacher/login',
     failureFlash: true,
   })
 );
-// routes/index.js
-// ... (existing code)
-
-// Display the teacher dashboard (requires authentication)
 router.get('/teacher/dashboard', async (req, res) => {
   try {
     const user = await Teacher.findOne({
       username: req.session.passport.user,
     }).populate("Students");
     
-    // Render the EJS file with teacher data
     res.render('teacherDashboard', { user });
   } catch (error) {
     console.error(error);
     res.status(500).redirect('/your-route')
   }
 });
-
-// ... (existing code)
-
-// ... (existing code)
-
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -236,7 +222,7 @@ router.post('/admin/addStudent', async (req, res) => {
  
 
   try {
-     const teacher = await Teacher.findOne({cnic:req.body.tcnic}).populate('students');
+   
 
     
          const newstudent = new Student({
@@ -260,12 +246,12 @@ router.post('/admin/addStudent', async (req, res) => {
           password: req.body.password,
           username: req.body.username,
           role:req.body.role,
-          teachercnic:req.body.tcnic,
-          isAdmin:req.body.isAdmin, });
+          activeCourse:req.body.course,
+          isAdmin:req.body.isAdmin,
+         });
+         
          newstudent.save();
-         teacher.students.push(newstudent._id)
-         await teacher.save();
-         console.log(teacher)
+       
       
     
 
@@ -303,14 +289,12 @@ router.post('/admin/removeStudent/:id', async (req, res) => {
       return res.status(404).json({ message: 'Student not found' });
     }
 
-    const teacherstudent = await Student.findById(studentId);  // Find the student after deletion
-
-    // Assuming there's a 'teachercnic' field in the 'removedStudent' document
+    const teacherstudent = await Student.findById(studentId);  
     await Teacher.findOneAndUpdate(
       { cnic: removedStudent.teachercnic },
-      { $pull: { "students": { _id: teacherstudent._id } } }
+      { $pull: { "students": { ObjectID: teacherstudent._id } } }
     );
-
+    
     return res.json({ message: 'Student removed successfully', removedStudent });
   } catch (error) {
     console.error(error);
@@ -329,21 +313,20 @@ function isAuthenticated(req, res, next) {
   }
 }
 
-// Add a teacher
-// Define your authentication middleware
+
 function isTeacherAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   } else {
-    res.redirect('/your-route'); // Update the route to match your actual teacher login route
+    res.redirect('/your-route');
   }
 }
 
-// Use the middleware for the specific route
+
 router.get('/your-route', async (req, res) => {
   try {
-    // Your route logic here
-    res.render('teacherLogin'); // Assuming you have a separate EJS file for the teacher dashboard
+    
+    res.render('teacherLogin');
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
